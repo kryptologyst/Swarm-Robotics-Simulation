@@ -1,0 +1,99 @@
+# Simulation Configuration
+simulation:
+  dt: 0.01
+  max_steps: 5000
+  real_time: false
+
+# World Configuration
+world:
+  size: [50.0, 50.0]
+  boundaries: "reflective"  # reflective, periodic, absorbing
+  obstacles: false
+
+# Robot Configuration
+robots:
+  num_robots: 20
+  radius: 0.5
+  max_velocity: 2.0
+  max_acceleration: 5.0
+
+# Controller Configuration
+controllers:
+  flocking:
+    type: "flocking"
+    config:
+      perception_range: 2.0
+      alignment_weight: 0.1
+      cohesion_weight: 0.1
+      separation_weight: 0.2
+      max_velocity: 2.0
+      max_acceleration: 5.0
+  
+  consensus:
+    type: "consensus"
+    config:
+      communication_range: 3.0
+      consensus_gain: 0.5
+      consensus_type: "both"  # position, velocity, both
+      max_velocity: 2.0
+      max_acceleration: 5.0
+  
+  formation:
+    type: "formation"
+    config:
+      formation_type: "circle"  # line, circle, diamond, custom
+      formation_size: 2.0
+      formation_center: [0.0, 0.0]
+      formation_angle: 0.0
+      formation_gain: 1.0
+      collision_avoidance_gain: 2.0
+      max_velocity: 2.0
+      max_acceleration: 5.0
+  
+  coverage:
+    type: "coverage"
+    config:
+      coverage_area: [[-10, -10], [10, 10]]
+      coverage_gain: 1.0
+      collision_avoidance_gain: 2.0
+      coverage_density: "uniform"  # uniform, gaussian, custom
+      density_centers: [[0, 0]]
+      density_sigma: 2.0
+      max_velocity: 2.0
+      max_acceleration: 5.0
+
+# Safety Configuration
+safety:
+  collision_detection: true
+  emergency_stop: false
+  velocity_limits: true
+  acceleration_limits: true
+
+# Evaluation Configuration
+evaluation:
+  target_area: [[-10, -10], [10, 10]]
+  target_formation: null
+  collision_radius: 1.0
+  metrics:
+    - coverage_efficiency
+    - formation_error
+    - collision_rate
+    - energy_consumption
+    - stability_margin
+
+# Visualization Configuration
+visualization:
+  figsize: [10, 8]
+  dpi: 100
+  robot_radius: 0.5
+  trajectory_length: 50
+  animation_interval: 50
+  save_animation: false
+  robot_colors: null
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  save_trajectories: true
+  save_frequency: 10
+  output_dir: "results"
